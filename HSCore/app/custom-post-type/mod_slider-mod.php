@@ -34,7 +34,7 @@ add_action( 'init', function(){
 		'label' => __( 'اسلایدر', 'modiranart' ),
 		'description' => __( '', 'modiranart' ),
 		'labels' => $labels,
-		'menu_icon' => 'dashicons-images-alt2',
+		'menu_icon' => 'dashicons-slides',
 		'supports' => array('title', 'thumbnail'),
 		'taxonomies' => array(),
 		'public' => true,
@@ -80,11 +80,8 @@ add_action( 'cmb2_admin_init', function () {
 			'id'      => 'slider_color',
 			'type'    => 'colorpicker',
 			'default' => '#ffffff',
-			// 'options' => array(
-			// 	'alpha' => true, // Make this a rgba color picker.
-			// ),
 		) );
-		
+
         $mSlider->add_field( array(
             'name' => 'لینک اسلاید',
             'id'   => 'slider_link',
