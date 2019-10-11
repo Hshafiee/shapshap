@@ -32,8 +32,8 @@
                                 <div class='uk-modal-dialog'>
                                     <button class='uk-modal-close-full uk-close-large' type='button' data-uk-close></button>
                                     <div class='uk-grid-collapse uk-child-width-1-2@s uk-flex-middle' data-uk-grid>
-                                        <div class='uk-background-cover' style='background-image: url(\"{$img}\");' data-uk-height-viewport></div>
-                                        <div class='uk-padding-large'>
+                                        <div class='uk-background-cover' style='background-image: url(\"{$img}\");' data-uk-height-viewport data-uk-image></div>
+                                        <div class='uk-padding-large hs-justify'>
                                             <h1>{$title}</h1>
                                             <p>{$content}</p>
                                         </div>

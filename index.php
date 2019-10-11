@@ -11,6 +11,10 @@
 <div class="uk-section">
     <?php get_template_part('components/portfolio'); ?>
 </div>
+
+<div class="uk-section">
+    <?php get_template_part('components/posts'); ?>
+</div>
     
 
 
