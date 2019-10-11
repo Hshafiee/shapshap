@@ -1,3 +1,5 @@
+<!-- <div class="uk-container uk-container-expand"> -->
+
 <main>
 <section class="slides"> 
   
@@ -13,10 +15,10 @@
   // Custom WP query slider
   $slider = new WP_Query( 
     array(
-    'post_type' => array('mod_slider'),
-    'order' => 'DESC',
-    'meta_key' => 'slider_status',
-    'meta_value' => 'active',
+      'post_type' => array('mod_slider'),
+      'order' => 'DESC',
+      'meta_key' => 'slider_status',
+      'meta_value' => 'active',
   ) );
 
   if ( $slider->have_posts() ) {
@@ -45,3 +47,5 @@
 ?>
 </section>
 </main>
+
+<!-- </div> -->

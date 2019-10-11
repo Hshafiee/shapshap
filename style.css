@@ -8,12 +8,22 @@ License: hibird Split Licence
 License URI: -
 Version: 1.1
 */
+html , h1 , h2 , h3 , h4 ,h5 ,h6{
+    font-family: "Vazir"
+}
+
+.hs-justify{direction:rtl;text-align:justify;}
+.hs-portfolio img{
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
 
 /* Slider */
-.slides-nav {z-index: 99;position: fixed;right: -5%;display: flex;align-items: center;height: 100%;color: #111;}
+.slides-nav {z-index: 99;position: absolute;right: -5%;display: flex;align-items: center;height: 100%;color: #111;}
 @media (min-width: 54em) {.slides-nav {right: 2%;}}
 .slides-nav__nav {position: relative;right: 0;display: block;font-size: 1em;-webkit-transform: rotate(90deg);transform: rotate(90deg);-webkit-transform-origin: center;transform-origin: center;}
-.slides-nav button {position: relative;display: inline-block;padding: 0.35em;margin: 0;font-family: "Vazir", monospace;-webkit-appearance: none;-moz-appearance: none;appearance: none;background: transparent;border: 0;overflow-x: hidden;transition: color 0.5s ease;}
+.slides-nav button {position: relative;display: inline-block;padding: 0.35em;margin: 0;font-family: "Vazir", monospace;-webkit-appearance: none;-moz-appearance: none;appearance: none;background: transparent;border: 0;overflow-x: hidden;transition: color 0.5s ease;font-size: 20px;}
 .slides-nav button:after {content: '';position: absolute;top: 50%;left: 0;height: 1px;width: 0;background: #111;transition: width 0.4s ease;}
 .slides-nav button:hover {cursor: pointer;color: rgba(17, 17, 17, 0.75);transition: color 0.5s ease;}
 .slides-nav button:hover:after {width: 100%;transition: width 0.4s ease;}
@@ -37,7 +47,7 @@ Version: 1.1
 .is-active .slide__title .title-line:nth-of-type(2n) span {transition-delay: 0.2s;}
 .slide__figure {z-index: 7;position: absolute;left: 0;right: 0;margin: 0 auto;height: 100%;width: 100%;transition: -webkit-transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), -webkit-transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);}
 .is-sliding .slide__figure {-webkit-transform: scale(0.8);transform: scale(0.8);transition: -webkit-transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), -webkit-transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);}
-.slide__img {position: relative;display: block;background-size: cover;background-attachment: fixed;background-position: 50%;-webkit-backface-visibility: hidden;height: 0%;width: 100%;-webkit-filter: grayscale(0%);filter: grayscale(0%);transition: height 1s 1.4s cubic-bezier(0.19, 1, 0.22, 1), -webkit-filter 0.4s 0.1s ease;transition: height 1s 1.4s cubic-bezier(0.19, 1, 0.22, 1), filter 0.4s 0.1s ease;transition: height 1s 1.4s cubic-bezier(0.19, 1, 0.22, 1), filter 0.4s 0.1s ease, -webkit-filter 0.4s 0.1s ease;}
+.slide__img {position: relative;display: block;background-size: cover;background-position: 50%;-webkit-backface-visibility: hidden;height: 0%;width: 100%;-webkit-filter: grayscale(0%);filter: grayscale(0%);transition: height 1s 1.4s cubic-bezier(0.19, 1, 0.22, 1), -webkit-filter 0.4s 0.1s ease;transition: height 1s 1.4s cubic-bezier(0.19, 1, 0.22, 1), filter 0.4s 0.1s ease;transition: height 1s 1.4s cubic-bezier(0.19, 1, 0.22, 1), filter 0.4s 0.1s ease, -webkit-filter 0.4s 0.1s ease;}
 .is-active .slide__img {height: 100%;opacity: 1;transition: height 0.5s 0.3s cubic-bezier(0.77, 0, 0.175, 1), -webkit-filter 0.4s 0.1s ease;transition: height 0.5s 0.3s cubic-bezier(0.77, 0, 0.175, 1), filter 0.4s 0.1s ease;transition: height 0.5s 0.3s cubic-bezier(0.77, 0, 0.175, 1), filter 0.4s 0.1s ease, -webkit-filter 0.4s 0.1s ease;}
 .is-sliding .slide__img {-webkit-filter: grayscale(100%);filter: grayscale(100%);}
 
