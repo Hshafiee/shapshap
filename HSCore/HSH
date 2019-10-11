@@ -1,0 +1,191 @@
+<?php
+echo get_help();
+$action = readline("Action : ");
+
+switch ($action){
+    case "init":
+
+        break;
+    case "cpt":
+        $filename = readline("File Name : ");
+        $showname = readline("Dashboard Name (Persian Name) : ");
+        $icon     = readline("DashIcon  Name : ");
+        if (!empty($filename)){
+            $CPTFILE = fopen(__DIR__ . "/app/custom-post-type/".$filename."-mod.php", "w") or die("Unable to open file!");
+            fwrite($CPTFILE, get_cpt_template($filename,$showname,$icon));
+            fclose($CPTFILE);
+            die("\nCustom Post Type Created SuccessFully\n");
+        }
+        break;
+    case "page":
+        $filename = readline("File Name : ");
+        $showname = readline("Dashboard Name (Persian Name) : ");
+        $icon     = readline("DashIcon  Name : ");
+        if (!empty($filename)){
+            $PAGEFILE = fopen(__DIR__ . "/app/pages/".$filename."-mod.php", "w") or die("Unable to open file!");
+            fwrite($PAGEFILE, get_page_template($filename,$showname,$icon));
+            fclose($PAGEFILE);
+            die("\nCustom Page Created SuccessFully\n");
+        }
+        break;
+    default:
+        echo "Action Not Valid , Please Check Your Action And Try Again";
+        break;
+}
+
+
+
+
+
+
+function get_cpt_template($filename,$name,$icon){
+
+    $CPT = "<?php
+// Register Custom Post Type {$name}
+add_action( 'init', function(){
+
+	\$labels = array(
+		'name' => _x( '{$name}', 'Post Type General Name', 'modiranart' ),
+		'singular_name' => _x( '{$filename}', 'Post Type Singular Name', 'modiranart' ),
+		'menu_name' => _x( '{$name}', 'Admin Menu text', 'modiranart' ),
+		'name_admin_bar' => _x( '{$name}', 'Add New on Toolbar', 'modiranart' ),
+		'archives' => __( 'آرشیو {$name} ', 'modiranart' ),
+		'attributes' => __( 'ویژگی های {$name} ', 'modiranart' ),
+		'parent_item_colon' => __( 'والد {$name}:', 'modiranart' ),
+		'all_items' => __( 'همه {$name}', 'modiranart' ),
+		'add_new_item' => __( 'افزودن {$name}', 'modiranart' ),
+		'add_new' => __( 'افزودن', 'modiranart' ),
+		'new_item' => __( 'افزودن {$name}', 'modiranart' ),
+		'edit_item' => __( 'ویرایش {$name}', 'modiranart' ),
+		'update_item' => __( 'بروزرسانی {$name}', 'modiranart' ),
+		'view_item' => __( 'نمایش {$name}', 'modiranart' ),
+		'view_items' => __( 'نمایش {$name}', 'modiranart' ),
+		'search_items' => __( 'جستجو در {$name}', 'modiranart' ),
+		'not_found' => __( 'موردی یافت نشد', 'modiranart' ),
+		'not_found_in_trash' => __( 'موردی یافت نشد', 'modiranart' ),
+		'featured_image' => __( 'تصویر شاخص', 'modiranart' ),
+		'set_featured_image' => __( 'استفاده به عنوان تصویر شاخص', 'modiranart' ),
+		'remove_featured_image' => __( 'حذف  تصویر شاخص', 'modiranart' ),
+		'use_featured_image' => __( 'استفاده به عنوان تصویر شاخص', 'modiranart' ),
+		'insert_into_item' => __( 'افزودن به {$name}', 'modiranart' ),
+		'uploaded_to_this_item' => __( 'بارگزاری در {$name}', 'modiranart' ),
+		'items_list' => __( 'لیست {$name} ', 'modiranart' ),
+		'items_list_navigation' => __( 'پیمایش {$name} ', 'modiranart' ),
+		'filter_items_list' => __( 'فیلتر {$name}', 'modiranart' ),
+	);
+	\$args = array(
+		'label' => __( '{$name}', 'modiranart' ),
+		'description' => __( '', 'modiranart' ),
+		'labels' => \$labels,
+		'menu_icon' => '{$icon}',
+		'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'author', 'comments', 'trackbacks', 'page-attributes', 'post-formats', 'custom-fields'),
+		'taxonomies' => array(),
+		'public' => true,
+		'show_ui' => true,
+		'show_in_menu' => true,
+		'menu_position' => 1,
+		'show_in_admin_bar' => true,
+		'show_in_nav_menus' => true,
+		'can_export' => true,
+		'has_archive' => true,
+		'hierarchical' => true,
+		'exclude_from_search' => false,
+		'show_in_rest' => true,
+		'publicly_queryable' => true,
+		'capability_type' => 'page',
+	);
+	register_post_type( '{$filename}', \$args );
+}, 0 );
+
+\n
+add_action( 'init', function(){
+    register_taxonomy(
+        '{$filename}-category',
+        '{$filename}',
+        array(
+            'label' => __( 'Category' ),
+            'rewrite' => array( 'slug' => '{$filename}-category' ),
+            'hierarchical' => true,
+        )
+    );
+} );
+
+\n
+add_action( 'cmb2_admin_init', function () { 
+	\${$filename}_term = new_cmb2_box( array( 
+		'id'               => '{$filename}_term', 
+		'title'            => esc_html__( 'اطلاعات تکمیلی', 'modiranart' ),
+		'object_types'     => array( 'term' ), 
+		'taxonomies'       => array( '{$filename}-category' ),
+	) ); 
+
+	\${$filename}_term->add_field( array( 
+		'name' => esc_html__( 'تصویر دسته', 'modiranart' ), 
+		'id'   => '{$filename}_cat_image', 
+		'type' => 'file', 
+	) ); 
+}  ); 
+
+?>";
+
+    return $CPT;
+}
+
+
+
+
+function get_page_template($filename,$name,$icon){
+return "<?php
+add_action('admin_menu', function(){
+    add_menu_page( 
+        '', 
+        '{$name}', 
+        'edit_posts', 
+        '{$filename}_options', 
+        '{$filename}_callback', 
+        '{$icon}' 
+  
+       );
+});
+
+function {$filename}_callback(){
+
+}
+?>
+";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+function get_help(){
+    return"
+
+           ███╗   ███╗ ██████╗ ██████╗ ██╗██████╗  █████╗ ███╗   ██╗    █████╗ ██████╗ ████████╗
+           ████╗ ████║██╔═══██╗██╔══██╗██║██╔══██╗██╔══██╗████╗  ██║   ██╔══██╗██╔══██╗╚══██╔══╝
+           ██╔████╔██║██║   ██║██║  ██║██║██████╔╝███████║██╔██╗ ██║   ███████║██████╔╝   ██║   
+           ██║╚██╔╝██║██║   ██║██║  ██║██║██╔══██╗██╔══██║██║╚██╗██║   ██╔══██║██╔══██╗   ██║   
+           ██║ ╚═╝ ██║╚██████╔╝██████╔╝██║██║  ██║██║  ██║██║ ╚████║   ██║  ██║██║  ██║   ██║   
+           ╚═╝     ╚═╝ ╚═════╝ ╚═════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   
+                        HSH FrameWork | Developed By : H.shafiee | Version : 2.0                                                                        
+    
+
+==============================================================================================================
+                  |
+                  |init         : initialize Directory
+Actions           |cpt          : Custom Post Type
+                  |page         : Admin Page
+                  |
+==============================================================================================================
+
+";
+}
+?>
