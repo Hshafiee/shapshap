@@ -13,11 +13,7 @@ html , h1 , h2 , h3 , h4 ,h5 ,h6{
 }
 
 .hs-justify{direction:rtl;text-align:justify;}
-.hs-portfolio img{
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-}
+.hs-portfolio img{width: 100%;height: 350px;object-fit: cover;}
 
 /* Slider */
 .slides-nav {z-index: 99;position: absolute;right: -5%;display: flex;align-items: center;height: 100%;color: #111;}
