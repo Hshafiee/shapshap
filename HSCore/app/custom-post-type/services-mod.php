@@ -67,7 +67,7 @@ add_action( 'cmb2_admin_init', function () {
 	) );
 
 		$mService->add_field( array(
-			'name'    => 'وضعیت اسلاید',
+			'name'    => 'وضعیت سرویس',
 			'id'      => 'service_status',
 			'type'    => 'radio_inline',
 			'options' => array(
